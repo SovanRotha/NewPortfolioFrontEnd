@@ -56,13 +56,10 @@ function Header() {
       `}</style>
 
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500
-          ${scrolled
-            ? "bg-white/80 dark:bg-stone-900/85 backdrop-blur-xl shadow-sm border-b border-amber-200/60 dark:border-stone-700/60 py-3"
-            : "bg-transparent py-5"
-          }`}
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 bg-white/90 dark:bg-stone-950/90 backdrop-blur-xl shadow-sm border-b border-transparent
+          ${scrolled ? "py-3 border-amber-200/60 dark:border-stone-700/60" : "py-5"}`}
       >
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
 
           {/* Logo */}
           <a
@@ -119,8 +116,10 @@ function Header() {
             {/* Hamburger (mobile) */}
             <button
               onClick={() => setOpen((o) => !o)}
-              className="md:hidden p-1.5 rounded-lg text-stone-700 dark:text-stone-200 hover:bg-amber-100 dark:hover:bg-stone-700 transition-colors"
+              className="md:hidden p-2 rounded-xl text-stone-700 dark:text-stone-200 hover:bg-amber-100 dark:hover:bg-stone-700 transition-colors"
               aria-label="Toggle menu"
+              aria-expanded={open}
+              type="button"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 {open

@@ -36,7 +36,7 @@ const educations = [
 export default function Journey() {
   return (
     <section
-      id="journey"
+      id="education"
       className="relative bg-amber-100 dark:bg-stone-950 min-h-screen px-6 py-20 md:px-8 overflow-hidden transition-colors duration-500"
     >
       {/* Background blobs */}

@@ -9,9 +9,9 @@ import Award from "./Award/Award.jsx";
 
 function App(){
   return(
-    <div>
+    <div className="min-h-screen bg-amber-50 text-stone-900 dark:bg-stone-950 dark:text-stone-100 transition-colors duration-500">
       <Header />
-      <main className="">
+      <main className="pt-24">
         <section id="home" className="scroll-mt-24">
           <Home />
         </section>
@@ -21,7 +21,7 @@ function App(){
         <section id="education" className="scroll-mt-24">
           <Education />
         </section>
-        <section id= "awards" className="scroll-mt-24">
+        <section id="awards" className="scroll-mt-24">
           <Award />
         </section>
         <section id="projects" className="scroll-mt-24">

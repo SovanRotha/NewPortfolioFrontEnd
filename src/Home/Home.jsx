@@ -24,16 +24,18 @@ function Home() {
             I create thoughtful interfaces and reliable web applications with a strong focus on user experience, clean design, and smooth performance.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
             <button
               onClick={() => scrollTo("projects")}
-              className="rounded-full bg-amber-600 px-6 py-3 font-semibold text-white transition hover:bg-amber-700"
+              className="w-full sm:w-auto rounded-full bg-amber-600 px-6 py-3 font-semibold text-white transition hover:bg-amber-700"
+              type="button"
             >
               View Projects
             </button>
             <button
               onClick={() => scrollTo("contact")}
-              className="rounded-full border border-amber-500 px-6 py-3 font-semibold text-amber-700 transition hover:bg-amber-100 dark:border-amber-500 dark:text-amber-400 dark:hover:bg-amber-900/30"
+              className="w-full sm:w-auto rounded-full border border-amber-500 px-6 py-3 font-semibold text-amber-700 transition hover:bg-amber-100 dark:border-amber-500 dark:text-amber-400 dark:hover:bg-amber-900/30"
+              type="button"
             >
               Contact Me
             </button>
