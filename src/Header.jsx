@@ -95,7 +95,7 @@ function Header() {
                   <a
                     href={href}
                     onClick={(e) => handleNavClick(e, href)}
-                    className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 ${
+                    className={`px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-200 ${
                       isActive
                         ? "bg-white dark:bg-stone-800 text-amber-600 dark:text-amber-400 shadow-sm"
                         : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200"
