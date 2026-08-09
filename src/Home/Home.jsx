@@ -7,48 +7,59 @@ function Home() {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-amber-50 px-6 py-24 dark:bg-stone-950">
-      <div className="pointer-events-none absolute -top-20 right-0 h-80 w-80 rounded-full bg-amber-200/50 blur-[90px] dark:bg-amber-900/20" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 rounded-full bg-amber-300/40 blur-[90px] dark:bg-amber-800/20" />
+    <section className="relative min-h-[calc(100vh-80px)] flex items-center justify-center px-6 py-16 overflow-hidden bg-stone-50 dark:bg-stone-950 transition-colors duration-500">
+      {/* Background Ambient Lights */}
+      <div className="pointer-events-none absolute top-1/4 right-10 h-96 w-96 rounded-full bg-amber-400/20 dark:bg-amber-600/10 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-10 left-10 h-80 w-80 rounded-full bg-amber-300/30 dark:bg-amber-900/10 blur-[100px]" />
 
-      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
-        <div className="order-2 md:order-1">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-amber-600 dark:text-amber-400">
+      <div className="relative z-10 max-w-6xl mx-auto grid items-center gap-12 md:grid-cols-2">
+        {/* Content */}
+        <div className="order-2 md:order-1 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs font-bold tracking-widest uppercase mb-6">
+            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
             Full-Stack Developer
-          </p>
-          <h1 className="mb-6 text-4xl font-black leading-tight text-stone-900 dark:text-stone-50 sm:text-5xl lg:text-6xl">
-            I build modern,
-            <span className="block text-amber-600 dark:text-amber-400">polished web experiences</span>
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-stone-900 dark:text-stone-100 leading-[1.15] mb-6">
+            I build modern,{" "}
+            <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+              polished web experiences
+            </span>
           </h1>
-          <p className="mb-8 max-w-xl text-lg leading-relaxed text-stone-600 dark:text-stone-300">
-            I create thoughtful interfaces and reliable web applications with a strong focus on user experience, clean design, and smooth performance.
+
+          <p className="max-w-xl mx-auto md:mx-0 text-base sm:text-lg text-stone-600 dark:text-stone-400 leading-relaxed mb-8">
+            Specializing in performant full-stack web applications, refined user interfaces, and intuitive digital experiences.
           </p>
 
-          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
             <button
               onClick={() => scrollTo("projects")}
-              className="w-full sm:w-auto rounded-full bg-amber-600 px-6 py-3 font-semibold text-white transition hover:bg-amber-700"
               type="button"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-amber-500 hover:bg-amber-600 text-stone-950 font-semibold text-sm transition-all duration-200 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 active:scale-[0.98]"
             >
               View Projects
             </button>
             <button
               onClick={() => scrollTo("contact")}
-              className="w-full sm:w-auto rounded-full border border-amber-500 px-6 py-3 font-semibold text-amber-700 transition hover:bg-amber-100 dark:border-amber-500 dark:text-amber-400 dark:hover:bg-amber-900/30"
               type="button"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-full border border-stone-300 dark:border-stone-800 bg-white/50 dark:bg-stone-900/50 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-800 dark:text-stone-200 font-semibold text-sm backdrop-blur-md transition-all duration-200 active:scale-[0.98]"
             >
               Contact Me
             </button>
           </div>
         </div>
 
-        <div className="order-1 flex justify-center md:order-2">
-          <div className="relative w-72 rounded-[2rem] border border-white/70 bg-white/70 p-3 shadow-2xl backdrop-blur dark:border-stone-800 dark:bg-stone-900/70 sm:w-80">
-            <img
-              src={rotha}
-              alt="Profile"
-              className="h-80 w-full rounded-[1.5rem] object-cover object-center sm:h-96"
-            />
+        {/* Profile Card */}
+        <div className="order-1 md:order-2 flex justify-center">
+          <div className="relative group">
+            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-amber-500 to-amber-600 opacity-30 blur-xl group-hover:opacity-50 transition duration-500" />
+            <div className="relative w-64 sm:w-80 rounded-2xl p-3 bg-white/80 dark:bg-stone-900/80 border border-stone-200/80 dark:border-stone-800 backdrop-blur-xl shadow-xl">
+              <img
+                src={rotha}
+                alt="Profile"
+                className="w-full h-80 sm:h-96 rounded-xl object-cover object-center shadow-inner"
+              />
+            </div>
           </div>
         </div>
       </div>

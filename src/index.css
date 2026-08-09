@@ -1,26 +1,82 @@
 @import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+/* @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@700;900&display=swap');
 
 :root {
   color-scheme: light dark;
   scroll-behavior: smooth;
+  --bg: #f8f1e5;
+  --surface: rgba(255,255,255,0.88);
+  --surface-strong: rgba(255,255,255,0.95);
+  --text: #111827;
+  --muted: #6b7280;
+  --border: rgba(251,191,36,0.25);
+}
+
+html.dark {
+  color-scheme: dark;
+  --bg: #020617;
+  --surface: rgba(15,23,42,0.82);
+  --surface-strong: rgba(15,23,42,0.95);
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: rgba(245,158,11,0.18);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  min-width: 100%;
+  overflow-x: hidden;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-html.dark body {
-  background-color: #020617;
-  color: #f8fafc;
-}
-
 body {
   min-height: 100vh;
   margin: 0;
-  background-color: #fef3c7;
-  color: #111827;
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overscroll-behavior-x: none;
+}
+
+body::selection {
+  background: rgba(245, 158, 11, 0.25);
+  color: var(--text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 3px;
+}
+
+::placeholder {
+  color: #a8a29e;
+  opacity: 1;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', serif !important;
 }
 
 body::selection {
@@ -55,4 +111,4 @@ select:focus-visible {
 ::placeholder {
   color: #a8a29e;
   opacity: 1;
-}
+} */

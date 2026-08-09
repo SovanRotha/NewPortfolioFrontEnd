@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import GradeA from "../assets/Award Folder/Grade A.jpg";
 import AuppGPA from "../assets/Award Folder/Aupp GPA.jpg";
 import AuppScholar from "../assets/Award Folder/Aupp Scholarship.jpg";
@@ -7,207 +7,136 @@ import NumberOne from "../assets/Award Folder/Number 1.jpg";
 import OverallAward from "../assets/Award Folder/Orverall Award.jpg";
 import TopScorer from "../assets/Award Folder/TopScorer.jpg";
 
-function Award() {
+const awards = [
+  { id: 1, name: "Grade A Award — 99.9943", description: "Awarded for achieving an A grade across national exams.", image: GradeA },
+  { id: 2, name: "AUPP GPA Award", description: "Recognized for a high GPA throughout freshman year.", image: AuppGPA },
+  { id: 3, name: "AUPP Scholarship Award", description: "Awarded a merit-based academic scholarship from AUPP.", image: AuppScholar },
+  { id: 4, name: "English Certificate Award", description: "Recognized for high-level proficiency in English language skills.", image: EnglishAward },
+  { id: 5, name: "Number One Award", description: "Ranked first overall in academic class performance.", image: NumberOne },
+  { id: 6, name: "Overall Award", description: "Recognized for outstanding achievement across multiple categories.", image: OverallAward },
+  { id: 7, name: "Top Scorer Award", description: "Achieved highest total test score in competitive examinations.", image: TopScorer },
+];
+
+export default function Award() {
   const [selected, setSelected] = useState(null);
 
-  const awards = [
-    {
-      id: 1,
-      name: "Grade A Award — 99.9943",
-      description: "Awarded for achieving an A grade across exams.",
-      image: GradeA,
-    },
-    {
-      id: 2,
-      name: "AUPP GPA Award",
-      description: "Recognized for a high GPA in freshman year.",
-      image: AuppGPA,
-    },
-    {
-      id: 3,
-      name: "AUPP Scholarship Award",
-      description: "Awarded a scholarship from AUPP.",
-      image: AuppScholar,
-    },
-    {
-      id: 4,
-      name: "English Certificate Award",
-      description: "Recognized for excellence in English proficiency.",
-      image: EnglishAward,
-    },
-    {
-      id: 5,
-      name: "Number One Award",
-      description: "Ranked highest in class.",
-      image: NumberOne,
-    },
-    {
-      id: 6,
-      name: "Overall Award",
-      description: "Recognized for outstanding performance across multiple areas.",
-      image: OverallAward,
-    },
-    {
-      id: 7,
-      name: "Top Scorer Award",
-      description: "Achieved the highest score in a subject or exam.",
-      image: TopScorer,
-    },
-  ];
-
-  // Close modal on Escape
+  // Close modal on Escape key press & prevent background scrolling
   useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && setSelected(null);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setSelected(null);
+    };
+
+    if (selected) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selected]);
 
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+    <section className="relative bg-amber-50/60 dark:bg-stone-950 min-h-screen px-6 py-20 md:px-12 transition-colors duration-500">
+      {/* Background Orbs */}
+      <div className="pointer-events-none absolute top-1/4 right-0 w-96 h-96 rounded-full bg-amber-300/20 dark:bg-amber-600/10 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-10 left-10 w-96 h-96 rounded-full bg-amber-400/20 dark:bg-stone-800/40 blur-[120px]" />
 
-        .home-serif { font-family: 'Playfair Display', serif !important; }
-
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(28px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-        @keyframes modalIn {
-          from { opacity: 0; transform: scale(.94) translateY(10px); }
-          to   { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 1;   transform: scale(1); }
-          50%       { opacity: 0.5; transform: scale(0.85); }
-        }
-
-        .anim-fade-up-1 { animation: fadeUp .7s ease both; }
-        .anim-fade-in   { animation: fadeIn .8s ease both .2s; }
-        .modal-pop      { animation: modalIn .3s cubic-bezier(.34,1.56,.64,1) both; }
-        .dot-pulse      { animation: pulse 1.8s ease-in-out infinite; }
-
-        .shimmer-text {
-          background: linear-gradient(90deg, #d97706 0%, #fbbf24 40%, #d97706 60%, #92400e 100%);
-          background-size: 200% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        .cert-card {
-          transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-        }
-        .cert-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 20px 36px rgba(217,119,6,.16);
-          border-color: rgba(217,119,6,.4);
-        }
-        .cert-card:hover .cert-overlay { opacity: 1; }
-        .cert-overlay { transition: opacity .25s ease; }
-
-        .seal {
-          filter: drop-shadow(0 4px 8px rgba(0,0,0,.15));
-        }
-      `}</style>
-
-      <section className="relative bg-amber-50 dark:bg-stone-950 min-h-screen px-6 pt-24 pb-24 transition-colors duration-500">
-        {/* Ambient background */}
-        <div className="pointer-events-none absolute -top-32 -right-32 w-[420px] h-[420px] rounded-full bg-amber-200/40 dark:bg-amber-900/20 blur-[80px]" />
-        <div className="pointer-events-none absolute bottom-0 -left-24 w-[320px] h-[320px] rounded-full bg-amber-300/25 dark:bg-amber-800/15 blur-[70px]" />
-
-        <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="anim-fade-up-1 text-center mb-14">
-            <span className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dot-pulse" />
-              {awards.length} Awards Earned
-            </span>
-            <h1 className="home-serif text-4xl md:text-5xl font-black text-stone-900 dark:text-stone-50 mb-4">
-              A shelf of <span className="shimmer-text">certificates</span>
-            </h1>
-            <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto">
-              Academic recognitions and scholarships collected along the way.
-              Tap any certificate for a closer look.
-            </p>
-          </div>
-
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {awards.map((award, i) => (
-              <button
-                key={award.id}
-                onClick={() => setSelected(award)}
-                style={{ animationDelay: `${0.08 * i}s` }}
-                className="cert-card anim-fade-up-1 text-left rounded-2xl overflow-hidden border border-amber-100 dark:border-stone-800 bg-white/80 dark:bg-stone-900/70 backdrop-blur shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
-              >
-                <div className="relative">
-                  <img
-                    src={award.image}
-                    alt={award.name}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="cert-overlay opacity-0 absolute inset-0 bg-stone-900/40 flex items-center justify-center">
-                    <span className="text-white text-xs font-semibold tracking-wide uppercase px-4 py-2 rounded-full border border-white/60">
-                      View certificate
-                    </span>
-                  </div>
-                  <span className="seal absolute -top-3 -left-3 text-3xl">🏅</span>
-                </div>
-                <div className="p-5">
-                  <h2 className="home-serif text-lg font-bold text-stone-900 dark:text-stone-100 mb-1.5 leading-snug">
-                    {award.name}
-                  </h2>
-                  <p className="text-sm text-stone-500 dark:text-stone-400 leading-relaxed">
-                    {award.description}
-                  </p>
-                </div>
-              </button>
-            ))}
-          </div>
+      <div className="relative z-10 max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16 space-y-4">
+          <span className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest uppercase px-4 py-2 rounded-full bg-amber-500/10 dark:bg-amber-400/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
+            🏅 {awards.length} Recognitions & Honors
+          </span>
+          <h1 className="text-4xl md:text-5xl font-black text-stone-900 dark:text-stone-100 font-serif tracking-tight">
+            A Shelf of <span className="italic text-amber-600 dark:text-amber-400">Certificates</span>
+          </h1>
+          <p className="text-stone-600 dark:text-stone-400 text-base max-w-lg mx-auto leading-relaxed">
+            Academic honors and scholarships collected throughout my learning journey. Select any award to inspect.
+          </p>
         </div>
-      </section>
 
-      {/* Lightbox */}
+        {/* Awards Gallery Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {awards.map((award) => (
+            <div
+              key={award.id}
+              onClick={() => setSelected(award)}
+              className="group cursor-pointer rounded-2xl overflow-hidden bg-white/80 dark:bg-stone-900/80 border border-amber-200/50 dark:border-stone-800/80 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden bg-stone-100 dark:bg-stone-950">
+                <img
+                  src={award.image}
+                  alt={award.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-stone-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span className="text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/40">
+                    View Award
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-6">
+                <h3 className="font-serif font-bold text-lg text-stone-900 dark:text-stone-100 mb-2 leading-snug">
+                  {award.name}
+                </h3>
+                <p className="text-stone-600 dark:text-stone-400 text-xs leading-relaxed">
+                  {award.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Accessible Lightbox Modal */}
       {selected && (
         <div
-          className="anim-fade-in fixed inset-0 z-50 flex items-center justify-center bg-stone-950/80 backdrop-blur-sm px-6 py-10"
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/80 backdrop-blur-md p-4 md:p-8"
           onClick={() => setSelected(null)}
         >
           <div
-            className="modal-pop relative max-w-2xl w-full bg-white dark:bg-stone-900 rounded-2xl overflow-hidden shadow-2xl border border-amber-200/50 dark:border-stone-700"
+            className="relative max-w-3xl w-full bg-white dark:bg-stone-900 rounded-3xl overflow-hidden shadow-2xl border border-amber-200/40 dark:border-stone-800 animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Close Button */}
             <button
               onClick={() => setSelected(null)}
-              aria-label="Close"
-              className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-white/90 dark:bg-stone-800/90 text-stone-700 dark:text-stone-200 shadow-lg hover:bg-white dark:hover:bg-stone-800 transition-colors"
+              aria-label="Close details"
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-stone-900/60 hover:bg-stone-900 text-white transition-colors"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <img
-              src={selected.image}
-              alt={selected.name}
-              className="w-full max-h-[70vh] object-contain bg-stone-100 dark:bg-stone-950"
-            />
-            <div className="p-6">
-              <h2 className="home-serif text-xl font-bold text-stone-900 dark:text-stone-100 mb-2">
+
+            {/* Modal Image */}
+            <div className="max-h-[60vh] bg-stone-950 flex items-center justify-center overflow-hidden">
+              <img
+                src={selected.image}
+                alt={selected.name}
+                className="max-h-[60vh] w-auto object-contain"
+              />
+            </div>
+
+            {/* Modal Text Details */}
+            <div className="p-6 md:p-8">
+              <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2">
                 {selected.name}
               </h2>
-              <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed">
+              <p className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed">
                 {selected.description}
               </p>
             </div>
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 }
-export default Award;

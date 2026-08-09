@@ -7,11 +7,12 @@ import Project from "./Project/Project.jsx";
 import About from "./About/About.jsx";
 import Award from "./Award/Award.jsx";
 
-function App(){
-  return(
-    <div className="min-h-screen bg-amber-50 text-stone-900 dark:bg-stone-950 dark:text-stone-100 transition-colors duration-500">
+
+function App() {
+  return (
+    <div className="min-h-screen w-full bg-stone-50 text-stone-900 antialiased selection:bg-amber-500/30 selection:text-amber-600 dark:bg-stone-950 dark:text-stone-100 transition-colors duration-500">
       <Header />
-      <main className="pt-24">
+      <main className="pt-20">
         <section id="home" className="scroll-mt-24">
           <Home />
         </section>
@@ -32,6 +33,7 @@ function App(){
         </section>
       </main>
     </div>
-  )
+  );
 }
-export default App
+
+export default App;
