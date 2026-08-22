@@ -6,6 +6,8 @@ import EnglishAward from "../assets/Award Folder/English Certificate.jpg";
 import NumberOne from "../assets/Award Folder/Number 1.jpg";
 import OverallAward from "../assets/Award Folder/Orverall Award.jpg";
 import TopScorer from "../assets/Award Folder/TopScorer.jpg";
+import ISTAD from "../assets/Award Folder/ISTAD.jpg";
+import ETEC from "../assets/Award Folder/ETEC.jpg";
 
 const awards = [
   { id: 1, name: "Grade A Award — 99.9943", description: "Awarded for achieving an A grade across national exams.", image: GradeA },
@@ -15,6 +17,8 @@ const awards = [
   { id: 5, name: "Number One Award", description: "Ranked first overall in academic class performance.", image: NumberOne },
   { id: 6, name: "Overall Award", description: "Recognized for outstanding achievement across multiple categories.", image: OverallAward },
   { id: 7, name: "Top Scorer Award", description: "Achieved highest total test score in competitive examinations.", image: TopScorer },
+  { id: 8, name: "ISTAD Certificate", description: "After completed program as a Junior Web Developer.", image: ISTAD },
+  { id: 9, name: "ETEC Certificate", description: "Completion of advanced web development course.", image: ETEC },
 ];
 
 export default function Award() {
